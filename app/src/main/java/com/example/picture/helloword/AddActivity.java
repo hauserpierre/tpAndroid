@@ -5,28 +5,40 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.Date;
 
 public class AddActivity extends Activity {
 
     public static final int RESULT_OK = 10;
-    DatePickerFragment datePickerFragment;
-    Date finalDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout);
+        final Button buttonDatePicker = findViewById(R.id.datePickerButton);
+        buttonDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            @TargetApi(24)
+            public void onClick(View v) {
+                DatePickerDialog d = new DatePickerDialog(AddActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        buttonDatePicker.setText(dayOfMonth+"/"+month+"/"+year);
+                    }
+                },0,0,0);
+                d.show();
+            }
+        });
         final Button buttonSave = findViewById(R.id.SaveStudent);
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,17 +61,19 @@ public class AddActivity extends Activity {
                 Spinner spinner = findViewById(R.id.group_spinner);
                 String spinnerValue = spinner.getSelectedItem().toString();
 
-                if(datePickerFragment != null && datePickerFragment.dateChosen != null){
-                    finalDate = datePickerFragment.dateChosen;
-                }else {
-                    finalDate = new Date();
+                Date birthday = new Date();
+
+                if(buttonDatePicker.getText() != null){
+                    String birthdayText = buttonDatePicker.getText().toString();
+                    String[] split = birthdayText.split("/");
+                    birthday = new Date(Integer.parseInt(split[0]),Integer.parseInt(split[1]),Integer.parseInt(split[2]));
                 }
                     Student newStudent = new Student(
                             lastName,
                             firstName,
                             gender,
                             email,
-                            finalDate,
+                            birthday,
                             spinnerValue
                     );
 
@@ -67,14 +81,6 @@ public class AddActivity extends Activity {
                 intent.putExtra("newStudent", newStudent);
                 setResult(RESULT_OK, intent);
                 finish();
-            }
-        });
-        final Button buttonDatePicker = findViewById(R.id.datePickerButton);
-        buttonDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @TargetApi(24)
-            public void onClick(View v) {
-                DialogFragment dialog = new DatePickerFragment();
             }
         });
     }
