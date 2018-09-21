@@ -32,6 +32,15 @@ public class AddActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                EditText lastNameEdit = (EditText) findViewById(R.id.lastname_text_input);
+                String lastName = lastNameEdit.getText().toString();
+
+                EditText firstNameEdit = (EditText) findViewById(R.id.firstname_text_input);
+                String firstName = firstNameEdit.getText().toString();
+
+                EditText emailEdit = (EditText) findViewById(R.id.email_text_input);
+                String email = emailEdit.getText().toString();
+
                 RadioGroup radioSexGroup = (RadioGroup) findViewById(R.id.radioSexGroup);
                 int genderSelected = radioSexGroup.getCheckedRadioButtonId();
                 RadioButton genderRadio = (RadioButton) findViewById(genderSelected);
@@ -46,10 +55,10 @@ public class AddActivity extends Activity {
                     finalDate = new Date();
                 }
                     Student newStudent = new Student(
-                            findViewById(R.id.lastname_text_input).toString(),
-                            findViewById(R.id.firstname_text_input).toString(),
+                            lastName,
+                            firstName,
                             gender,
-                            findViewById(R.id.email_text_input).toString(),
+                            email,
                             finalDate,
                             spinnerValue
                     );
