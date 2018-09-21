@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView android:id="@+id/Nom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/PageName"
+                android:text="Nom: " />
+            <EditText
+                android:id="@+id/lastname_text_input"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="text"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:id="@+id/Prenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/PageName"
+                android:text="Prénom: " />
+            <EditText
+                android:id="@+id/firstname_text_input"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="text"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:id="@+id/Gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/PageName"
+                android:text="Sexe: " />
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/radioSexGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Homme" />
+                <RadioButton android:id="@+id/radio_woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text="Femme" />
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:id="@+id/Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: " />
+            <EditText
+                android:id="@+id/email_text_input"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="text"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView android:id="@+id/DateNaissance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date de naissance: " />
+            <Button
+                android:id="@+id/datePickerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choisir une date"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:id="@+id/Groupe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Groupe: " />
+            <Spinner
+                android:id="@+id/group_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/vars"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:id="@+id/Redoublant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Redoublant: " />
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/SaveStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enregistrer"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
