@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Student implements Parcelable{
 
-    static ArrayList<Student> listStudent;
+    static ArrayList<Student> listStudent = new ArrayList<Student>();
     public static final Parcelable.Creator<Student> CREATOR =
             new Parcelable.Creator<Student>(){
                 @Override

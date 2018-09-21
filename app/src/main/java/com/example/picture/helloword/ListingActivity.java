@@ -24,7 +24,7 @@ public class ListingActivity extends Activity{
 
         Student.listStudent.add(new Student("Boutamdja","Brice"));
         Student.listStudent.add(new Student("Santerre","Charles"));
-        StudentAdapter stAdapter = new StudentAdapter(this, studentList);
+        StudentAdapter stAdapter = new StudentAdapter(this, Student.listStudent);
         list.setAdapter(stAdapter);
         Log.i("Money","Genre ez ça s'est bien passé");
     }

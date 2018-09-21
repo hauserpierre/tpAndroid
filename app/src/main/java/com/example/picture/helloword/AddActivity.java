@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import java.util.Date;
 
 public class AddActivity extends Activity {
 
+    public static final int RESULT_OK = 10;
     DatePickerFragment datePickerFragment;
     Date finalDate;
 
@@ -25,8 +27,8 @@ public class AddActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout);
-        final Button buttonList = findViewById(R.id.button_list);
-        buttonList.setOnClickListener(new View.OnClickListener() {
+        final Button buttonSave = findViewById(R.id.SaveStudent);
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -51,6 +53,11 @@ public class AddActivity extends Activity {
                             finalDate,
                             spinnerValue
                     );
+
+                Intent intent = new Intent();
+                intent.putExtra("newStudent", newStudent);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
         final Button buttonDatePicker = findViewById(R.id.datePickerButton);
@@ -61,7 +68,5 @@ public class AddActivity extends Activity {
                 DialogFragment dialog = new DatePickerFragment();
             }
         });
-        Toast toast = Toast.makeText(this,"The student has been created",Toast.LENGTH_SHORT);
-        toast.show();
     }
 }
