@@ -30,9 +30,10 @@ public class Student implements Parcelable{
     private String group;
     private Boolean redoublant;
 
-    public Student(String lastName, String firstName) {
+    public Student(String lastName, String firstName, String sexe) {
         this.lastName = lastName;
         this.firstName = firstName;
+        this.sexe = sexe;
     }
 
     public Student(String lastName, String firstName, String sexe, String email, Date birthday, String group){

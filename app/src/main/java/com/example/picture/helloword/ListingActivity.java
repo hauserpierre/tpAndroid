@@ -1,9 +1,12 @@
 package com.example.picture.helloword;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,14 +21,23 @@ public class ListingActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
         list = (ListView) findViewById(R.id.studentList);
-        ArrayList<Student> studentList = new ArrayList<Student>();
+        ArrayList<Student> studentList = bundle.getParcelableArrayList("listStudents");
 
-        Student.listStudent.add(new Student("Boutamdja","Brice"));
-        Student.listStudent.add(new Student("Santerre","Charles"));
-        StudentAdapter stAdapter = new StudentAdapter(this, Student.listStudent);
+        StudentAdapter stAdapter = new StudentAdapter(this, studentList);
         list.setAdapter(stAdapter);
         Log.i("Money","Genre ez ça s'est bien passé");
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Student studentSelected = (Student) list.getItemAtPosition(position);
+                Intent intent = new Intent(ListingActivity.this, StudentDetailActivity.class);
+                intent.putExtra("studentSelected", studentSelected);
+                startActivity(intent);
+            }
+        });
     }
 }

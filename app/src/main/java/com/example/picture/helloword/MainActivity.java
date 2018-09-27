@@ -20,10 +20,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final Button buttonList = findViewById(R.id.button_list);
+
+        listStudents.add(new Student("Boutamdja","Brice","Homme"));
+        listStudents.add(new Student("Santerre","Charles","Homme"));
+
         buttonList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListingActivity.class);
+                intent.putParcelableArrayListExtra("listStudents",listStudents);
                 startActivity(intent);
             }
         });
